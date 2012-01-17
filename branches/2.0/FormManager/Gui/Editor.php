@@ -27,16 +27,16 @@ class FormManager_Gui_Editor {
 	/**
 	 * Сборщик формы
 	 * 
-	 * @var FormManager_Gui_Form|null
+	 * @var FormManager_Gui_Collector_Form|null
 	 */
-	private $form = null;
+	private $collector = null;
 
 
 	/**
 	 * Конструктор
 	 */
 	public function __construct() {
-		$this->form = new FormManager_Gui_Form();
+		$this->collector = new FormManager_Gui_Form();
 	}
 
 	/**
@@ -54,7 +54,7 @@ class FormManager_Gui_Editor {
 	 * @param FormManager_Model_Form $form Редактируемая форма
 	 */
 	public function setForm(FormManager_Model_Form $form) {
-		$this->input = array_merge($this->input, $this->form->disassemble($form));
+		$this->input = array_merge($this->input, $this->collector->disassemble($form));
 	}
 
 	/**
@@ -64,13 +64,13 @@ class FormManager_Gui_Editor {
 	 * @return FormManager_Model_Form
 	 */
 	public function assemble() {
-		return $this->form->getForm($this->input);
+		return $this->collector->getForm($this->input);
 	}
 
 	/**
 	 * @return FormManager_Model_Form
 	 */
 	public function export() {
-		return $this->form->assemble($this->input);
+		return $this->collector->assemble($this->input);
 	}
 }

@@ -14,10 +14,10 @@
 /**
  * Форма в редакторе форм
  * 
- * @package FormManager\Gui
+ * @package FormManager\Gui\Collector
  * @author  Peter S. Gribanov <info@peter-gribanov.ru>
  */
-class FormManager_Gui_Form implements FormManager_Gui_Element_Interface {
+class FormManager_Gui_Collector_Form implements FormManager_Gui_Collector_Element_Interface {
 
 	/**
 	 * Возвращает форму для составления формы
