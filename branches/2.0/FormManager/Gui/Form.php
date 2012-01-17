@@ -12,41 +12,41 @@
  */
 
 /**
- * Поле формы в редакторе форм
+ * Форма в редакторе форм
  * 
- * @package FormManager\Gui\Field
+ * @package FormManager\Gui
  * @author  Peter S. Gribanov <info@peter-gribanov.ru>
  */
-abstract class FormManager_Gui_Field_Abstract implements FormManager_Gui_Element_Interface {
+class FormManager_Gui_Form implements FormManager_Gui_Element_Interface {
 
 	/**
-	 * Возвращает коллекцию полей для составления поля
+	 * Возвращает форму для составления формы
 	 * 
-	 * @return FormManager_Model_Collection_Nested
+	 * @return FormManager_Model_Form
 	 */
 	public function getForm() {
 		// TODO сделать базовую реализацию
 	}
 
 	/**
-	 * Собирает объект поля из массива
+	 * Собирает объект формы из массива
 	 * 
 	 * @param array $data
 	 * 
-	 * @return FormManager_Model_Field_Abstract
+	 * @return FormManager_Model_Form
 	 */
 	public function assemble(array $data) {
 		// TODO сделать базовую реализацию
 	}
 
 	/**
-	 * Разбирает объект поля на массив
+	 * Разбирает объект формы на массив
 	 * 
-	 * @param FormManager_Model_Field_Abstract $element
+	 * @param FormManager_Model_Form $form
 	 * 
 	 * @return array
 	 */
-	public function disassemble(FormManager_Model_Field_Abstract $field) {
+	public function disassemble(FormManager_Model_Form $form) {
 		// TODO сделать базовую реализацию
 	}
 
