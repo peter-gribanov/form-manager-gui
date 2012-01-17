@@ -20,18 +20,57 @@
 class FormManager_Gui_Editor {
 
 	/**
+	 * @var array
+	 */
+	private $input = array();
+
+	/**
+	 * Сборщик формы
+	 * 
+	 * @var FormManager_Gui_Form|null
+	 */
+	private $form = null;
+
+
+	/**
+	 * Конструктор
+	 */
+	public function __construct() {
+		$this->form = new FormManager_Gui_Form();
+	}
+
+	/**
+	 * Устанавливает входные данные
+	 * 
+	 * @param array $input Входные данные
+	 */
+	public function setInput(array $input = array()) {
+		$this->input = array_merge($this->input, $input);
+	}
+
+	/**
+	 * Устанавливает редактируемую форму
+	 * 
+	 * @param FormManager_Model_Form $form Редактируемая форма
+	 */
+	public function setForm(FormManager_Model_Form $form) {
+		$this->input = array_merge($this->input, $this->form->disassemble($form));
+	}
+
+	/**
 	 * Создает форму для редактирования другой формы
 	 * Если форма для редактирования не передана создает новую форму
 	 * 
-	 * @param FormManager_Model_Form|null $form Редактируемая форма
-	 * 
 	 * @return FormManager_Model_Form
 	 */
-	public function getEditor(FormManager_Model_Form $form = null) {
-		if (!($form instanceof FormManager_Model_Form)) {
-			$form = new FormManager_Model_Form();
-		}
-		// TODO требуется реализация
+	public function assemble() {
+		return $this->form->getForm($this->input);
 	}
 
+	/**
+	 * @return FormManager_Model_Form
+	 */
+	public function export() {
+		return $this->form->assemble($this->input);
+	}
 }

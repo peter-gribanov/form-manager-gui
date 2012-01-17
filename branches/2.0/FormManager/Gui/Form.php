@@ -24,8 +24,12 @@ class FormManager_Gui_Form implements FormManager_Gui_Element_Interface {
 	 * 
 	 * @return FormManager_Model_Form
 	 */
-	public function getForm() {
-		// TODO сделать базовую реализацию
+	public function getForm(array $data = array()) {
+		// если нет входных данных создает новую форму
+		if (!$data) {
+			$data = $this->disassemble(new FormManager_Model_Form());
+		}
+		// TODO собрать объект формы для редактирования из данных опиывающих форму
 	}
 
 	/**
@@ -36,7 +40,7 @@ class FormManager_Gui_Form implements FormManager_Gui_Element_Interface {
 	 * @return FormManager_Model_Form
 	 */
 	public function assemble(array $data) {
-		// TODO сделать базовую реализацию
+		// TODO требуется реализация
 	}
 
 	/**
@@ -47,7 +51,7 @@ class FormManager_Gui_Form implements FormManager_Gui_Element_Interface {
 	 * @return array
 	 */
 	public function disassemble(FormManager_Model_Form $form) {
-		// TODO сделать базовую реализацию
+		// TODO требуется реализация
 	}
 
 }
