@@ -22,20 +22,30 @@ interface FormManager_Storage_Interface {
 	/**
 	 * Загружает форму
 	 * 
-	 * @return string $name Название формы
+	 * @param string $name Название формы
 	 * 
-	 * @return FormManager_Model_Form
+	 * @return array
 	 */
-	public function load($name);
+	public function get($name);
 
 	/**
 	 * Сохраняет форму
 	 * 
-	 * @param FormManager_Model_Form $form Объект формы
+	 * @param array $form Описание формы
 	 * 
 	 * @return boolean
 	 */
-	public function save(FormManager_Model_Form $form);
+	public function save($form);
+
+	/**
+	 * Обновление форму
+	 * 
+	 * @param array  $form Описание формы
+	 * @param string $name Название формы
+	 * 
+	 * @return boolean
+	 */
+	public function update($form, $name);
 
 	/**
 	 * Удаляет форму
@@ -44,13 +54,15 @@ interface FormManager_Storage_Interface {
 	 * 
 	 * @return boolean
 	 */
-	public function remove($name);
+	public function delete($name);
 
 	/**
 	 * Возвращает список всех форм
 	 * 
+	 * @param array $params Параметры получения списка форм
+	 * 
 	 * @return array
 	 */
-	public function getList();
+	public function getList(array $params);
 
 }
