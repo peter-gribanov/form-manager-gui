@@ -12,32 +12,44 @@
  */
 
 /**
- * Хранилища в файлах
+ * Хранилища в файлах в формате XML
  * 
  * @package FormManager\Storage
  * @author  Peter Gribanov <info@peter-gribanov.ru>
  */
-class FormManager_Storage_File implements FormManager_Storage_Interface {
+class FormManager_Storage_Xml implements FormManager_Storage_Interface {
 
 	/**
 	 * Загружает форму
 	 * 
-	 * @return string $name Название формы
+	 * @param string $name Название формы
 	 * 
-	 * @return FormManager_Model_Form
+	 * @return array
 	 */
-	public function load($name) {
+	public function get($name) {
 		// TODO требуется реализация
 	}
 
 	/**
 	 * Сохраняет форму
 	 * 
-	 * @param FormManager_Model_Form $form Объект формы
+	 * @param array $form Описание формы
 	 * 
 	 * @return boolean
 	 */
-	public function save(FormManager_Model_Form $form) {
+	public function save($form) {
+		// TODO требуется реализация
+	}
+
+	/**
+	 * Обновление форму
+	 * 
+	 * @param array  $form Описание формы
+	 * @param string $name Название формы
+	 * 
+	 * @return boolean
+	 */
+	public function update($form, $name) {
 		// TODO требуется реализация
 	}
 
@@ -48,16 +60,18 @@ class FormManager_Storage_File implements FormManager_Storage_Interface {
 	 * 
 	 * @return boolean
 	 */
-	public function remove($name) {
+	public function delete($name) {
 		// TODO требуется реализация
 	}
 
 	/**
 	 * Возвращает список всех форм
 	 * 
+	 * @param array $params Параметры получения списка форм
+	 * 
 	 * @return array
 	 */
-	public function getList() {
+	public function getList(array $params) {
 		// TODO требуется реализация
 	}
 
