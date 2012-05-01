@@ -11,8 +11,9 @@
  * @license   http://peter-gribanov.ru/license	GNU GPL Version 3
  */
 
-if (version_compare(phpversion(), '5.3', '<') == true) {
-	exit('Requires PHP 5.3.x');
+// для работы функции spl_autoload_register нужен php версии 5.1.2 и старше
+if (version_compare(phpversion(), '5.1.2', '<') == true) {
+	exit('Requires PHP 5.1.2');
 }
 
 /**
@@ -22,14 +23,14 @@ if (version_compare(phpversion(), '5.3', '<') == true) {
  * 
  * @var string
  */
-define('FORM_MANAGER_PATH', __DIR__);
+define('FORM_MANAGER_PATH', dirname(__FILE__));
 
 // определение http пути к дирректории
 // http путь по умолчанию
 $http_path = '/';
 $path = realpath($_SERVER['DOCUMENT_ROOT']);
-if (__DIR__ != $path && strpos($path, __DIR__) === 0) {
-	$http_path = str_replace(__DIR__, '', $path).'/';
+if (dirname(__FILE__) != $path && strpos($path, dirname(__FILE__)) === 0) {
+	$http_path = str_replace(dirname(__FILE__), '', $path).'/';
 }
 
 /**
@@ -70,4 +71,4 @@ if (!function_exists('p')) {
 }
 
 // подключение автолоудера
-require __DIR__.'/autoload.php';
+require dirname(__FILE__).'/autoload.php';
