@@ -23,12 +23,12 @@ interface FormManager_Package_Interface {
 	 * Загружает форму
 	 * 
 	 * @param array   $form    Описание формы
-	 * @param Closure $hendler Обработчик результата
+	 * @param Closure $handler Обработчик результата
 	 * @param array   $input   Входные данные
 	 * 
 	 * @return FormManager_Package_Form_Interface
 	 */
-	public function controller($form, Closure $hendler, array $input = array());
+	public function controller($form, Closure $handler, array $input = array());
 
 	/**
 	 * Возвращает список всех элиментов
