@@ -39,25 +39,45 @@ class FormManager_Gui implements FormManager_Gui_Interface {
 	/**
 	 * Возвращает редактор форму
 	 * 
+	 * @param array  $input Входные данные
+	 * 
+	 * @return array
+	 */
+	public function createForm(array $input = array()) {
+		$status = null;
+		$form = $this->factory->Package()->getElementForm('Form');
+		if ($input) {
+			// TODO приведение к виду
+			$status = $this->factory->Storage()->save($input);
+			$form = $input;
+		}
+		//$form['sttings'] = $this->factory->Package()->getElementForm('Form', $form);
+		return array(
+			'status'   => $status,
+			'form'     => $form,
+			'elements' => $this->factory->Package()->getElements(),
+			'filters'  => $this->factory->Package()->getFilters()
+		);
+	}
+
+	/**
+	 * Возвращает редактор форму
+	 * 
 	 * @param string $name  Название формы
 	 * @param array  $input Входные данные
 	 * 
 	 * @return array
 	 */
-	public function getEditor($name = null, array $input = array()) {
+	public function editForm($name, array $input = array()) {
 		$status = null;
-		$form   = null;
+		$form = $this->factory->Storage()->get($name);
+		$form = $form['structure'];
 		if ($input) {
 			// TODO приведение к виду
-			if ($name) {
-				$this->factory->Storage()->update($input, $name);
-			} else {
-				$status = $this->factory->Storage()->save($input);
-			}
+			$this->factory->Storage()->update($input, $name);
 			$form = $input;
-		} elseif ($name) {
-			$form = $this->factory->Storage()->get($name);
 		}
+		//$form['settings'] = $this->factory->Package()->getElementForm('Form', $form);
 		return array(
 			'status'   => $status,
 			'form'     => $form,
@@ -78,19 +98,21 @@ class FormManager_Gui implements FormManager_Gui_Interface {
 	}
 
 	/**
-	 * Возвращает список всех элиментов
+	 * Возвращает контроллер формы
 	 * 
-	 * @param string  $name    Название формы
-	 * @param Closure $hendler Обработчик результата
-	 * @param array   $input   Входные данные
+	 * @param string       $name    Название формы
+	 * @param array        $input   Входные данные
+	 * @param Closure|null $handler Обработчик результата
 	 * 
 	 * @return FormManager_Package_Form_Interface|null
 	 */
-	public function getForm($name, Closure $hendler, array $input = array()) {
+	public function getFormController($name, array $input = array(), Closure $handler = null) {
 		if ($form = $this->factory->Storage()->get($name)) {
-			$form = $this->factory->Package()->controller($form, $hendler, $input);
+			$form = $this->factory->Package()->controller($form, $input);
 			if (!($form instanceof FormManager_Package_Form_Interface)) {
 				$form = null;
+			} elseif ($handler) {
+				$form->setHandler($handler);
 			}
 		}
 		return $form;

@@ -29,12 +29,21 @@ interface FormManager_Gui_Interface {
 	/**
 	 * Возвращает редактор форму
 	 * 
+	 * @param array  $input Входные данные
+	 * 
+	 * @return array
+	 */
+	public function createForm(array $input = array());
+
+	/**
+	 * Возвращает редактор форму
+	 * 
 	 * @param string $name Название формы
 	 * @param array  $input Входные данные
 	 * 
 	 * @return array
 	 */
-	public function getEditor($name = null, array $input = array());
+	public function editForm($name, array $input = array());
 
 	/**
 	 * Отрисовывает форму
@@ -46,15 +55,15 @@ interface FormManager_Gui_Interface {
 	public function getFormList(array $params = array());
 
 	/**
-	 * Возвращает список всех элиментов
+	 * Возвращает контроллер формы
 	 * 
-	 * @param string  $name    Название формы
-	 * @param Closure $hendler Обработчик результата
-	 * @param array   $input   Входные данные
+	 * @param string       $name    Название формы
+	 * @param array        $input   Входные данные
+	 * @param Closure|null $handler Обработчик результата
 	 * 
-	 * @return array
+	 * @return FormManager_Package_Form_Interface|null
 	 */
-	public function getForm($name, Closure $hendler, array $input = array());
+	public function getFormController($name, array $input = array(), Closure $handler = null);
 
 	/**
 	 * Возвращает список всех элиментов
