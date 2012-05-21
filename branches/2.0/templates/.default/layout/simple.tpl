@@ -5,5 +5,5 @@
  * @param string $content
  */
 ?>
-<?self::inc('menu.php')?>
+<?=self::inc('menu.tpl')?>
 <?=$content?>
