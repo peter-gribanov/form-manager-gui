@@ -32,6 +32,8 @@ $path = realpath($_SERVER['DOCUMENT_ROOT']);
 if (dirname(__FILE__) != $path && strpos($path, dirname(__FILE__)) === 0) {
 	$http_path = str_replace(dirname(__FILE__), '', $path).'/';
 }
+$http_path = (strtoupper($_SERVER['SERVER_PROTOCOL'][5]) == 'S' ? 'https://' : 'http://')
+	.$_SERVER['HTTP_HOST'].$http_path;
 
 /**
  * Корневой HTTP путь к библиотеке на сервере
