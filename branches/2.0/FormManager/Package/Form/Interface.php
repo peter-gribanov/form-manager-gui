@@ -20,6 +20,13 @@
 interface FormManager_Package_Form_Interface {
 
 	/**
+	 * Устанавливает обработчик успешного заполнения формы
+	 * 
+	 * @param Closure $handler Обработчик
+	 */
+	public function setHandler(Closure $handler);
+
+	/**
 	 * Отрисовывает форму
 	 * 
 	 * @param string|null $template Шаблон

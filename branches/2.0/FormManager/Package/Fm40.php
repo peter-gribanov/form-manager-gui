@@ -20,16 +20,47 @@
 class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 
 	/**
+	 * Фабрика комплекса программ
+	 * 
+	 * @var FormManager_Factory|null
+	 */
+	private $factory = null;
+
+	/**
+	 * Фабрика элементов
+	 * 
+	 * @var FormManager_Element_Factory|null
+	 */
+	private $element_factory = null;
+
+
+	/**
+	 * Конструктор
+	 * 
+	 * @param FormManager_Factory $factory Фабрика комплекса программ
+	 */
+	public function __construct(FormManager_Factory $factory) {
+		$this->factory = $factory;
+	}
+
+	/**
 	 * Загружает форму
 	 * 
 	 * @param array   $form    Описание формы
-	 * @param Closure $hendler Обработчик результата
+	 * @param Closure $handler Обработчик результата
 	 * @param array   $input   Входные данные
 	 * 
 	 * @return FormManager_Package_Form_Interface
 	 */
-	public function controller($form, Closure $hendler, array $input = array()) {
-		
+	public function controller($form, Closure $handler, array $input = array()) {
+		if (!$this->element_factory) {
+			$this->element_factory = new FormManager_Element_Factory();
+		}
+		$form = new FormManager_Package_Fm40_Form(
+			$this->element_factory->assign($form)->setValue($input),
+			$this->factory->View()
+		);
+		return $form->setHandler($handler);
 	}
 
 	/**
@@ -38,7 +69,8 @@ class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 	 * @return array
 	 */
 	public function getElements() {
-		
+		// рефлексия
+		return array();
 	}
 
 	/**
@@ -49,7 +81,20 @@ class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 	 * @return array
 	 */
 	public function getElementForm($name) {
+		// рефлексия
 		
+		// заглушка для формы
+		if ($name == 'Form') {
+			return array(
+				'element'  => 'Form',
+				'name'     => 'noname',
+				'label'    => 'No name',
+				'filters'  => array(),
+				'children' => array(),
+				'settings' => 'Settings form'
+			);
+		}
+		return array();
 	}
 
 	/**
@@ -58,7 +103,8 @@ class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 	 * @return array
 	 */
 	public function getFilters() {
-		
+		// рефлексия
+		return array();
 	}
 
 	/**
@@ -69,7 +115,8 @@ class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 	 * @return array
 	 */
 	public function getFilterForm($name) {
-		
+		// рефлексия
+		return array();
 	}
 
 }
