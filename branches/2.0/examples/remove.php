@@ -8,7 +8,7 @@
 <?
 if (isset($_GET['form'])) {
 	$factory = new FormManager_Factory();
-	echo $factory->Viwe()->render($factory->Gui()->deleteForm($_GET['form']), 'remove.tpl');
+	echo $factory->View()->render($factory->Gui()->deleteForm($_GET['form']), 'remove.tpl');
 }
 ?>
 </body>

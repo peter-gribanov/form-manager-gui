@@ -7,7 +7,7 @@
 <body>
 <?
 $factory = new FormManager_Factory();
-echo $factory->Viwe()->render($factory->Gui()->getFormList(), 'list.tpl');
+echo $factory->View()->render($factory->Gui()->getFormList(), 'list.tpl');
 ?>
 </body>
 </html>

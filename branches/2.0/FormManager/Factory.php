@@ -22,9 +22,9 @@ class FormManager_Factory {
 	/**
 	 * Представление
 	 * 
-	 * @var FormManager_Viwe_Interface|null
+	 * @var FormManager_View_Interface|null
 	 */
-	private $viwe = null;
+	private $view = null;
 
 	/**
 	 * Павкет форм
@@ -51,17 +51,17 @@ class FormManager_Factory {
 	/**
 	 * Возвращает представление
 	 * 
-	 * @param FormManager_Viwe_Interface|null $viwe Представление
+	 * @param FormManager_View_Interface|null $view Представление
 	 * 
-	 * @return FormManager_Viwe_Interface
+	 * @return FormManager_View_Interface
 	 */
-	public function Viwe(FormManager_Viwe_Interface $viwe = null) {
-		if ($viwe) {
-			$this->viwe = $viwe;
-		} elseif (!$this->viwe) {
-			$this->viwe = new FormManager_Viwe();
+	public function View(FormManager_View_Interface $view = null) {
+		if ($view) {
+			$this->view = $view;
+		} elseif (!$this->view) {
+			$this->view = new FormManager_View();
 		}
-		return $this->viwe;
+		return $this->view;
 	}
 
 	/**
@@ -75,7 +75,7 @@ class FormManager_Factory {
 		if ($package) {
 			$this->package = $package;
 		} elseif (!$this->package) {
-			$this->package = new FormManager_Package_Fm40();
+			$this->package = new FormManager_Package_Fm40($this);
 		}
 		return $this->package;
 	}

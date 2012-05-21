@@ -12,7 +12,7 @@ if (isset($_GET['form'])) {
 		// do something
 	}, $_POST);
 	if ($form) {
-		echo $factory->Viwe()->render($form->render(), 'show.tpl');
+		echo $factory->View()->render($form->render(), 'show.tpl');
 	}
 }
 ?>

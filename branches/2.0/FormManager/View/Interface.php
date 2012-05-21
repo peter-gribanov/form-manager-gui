@@ -17,7 +17,7 @@
  * @package FormManager\Storage
  * @author  Peter Gribanov <info@peter-gribanov.ru>
  */
-interface FormManager_Viwe_Interface {
+interface FormManager_View_Interface {
 
 	/**
 	 * Устанавливает название используемого скина
