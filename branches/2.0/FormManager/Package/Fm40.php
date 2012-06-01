@@ -47,15 +47,21 @@ class FormManager_Package_Fm40 implements FormManager_Package_Interface {
 	 * Загружает форму
 	 * 
 	 * @param array   $form    Описание формы
-	 * @param Closure $handler Обработчик результата
 	 * @param array   $input   Входные данные
+	 * @param Closure $handler Обработчик результата
 	 * 
 	 * @return FormManager_Package_Form_Interface
 	 */
-	public function controller($form, Closure $handler, array $input = array()) {
+	public function controller($form, array $input = array(), Closure $handler = null) {
 		if (!$this->element_factory) {
 			$this->element_factory = new FormManager_Element_Factory();
 		}
+		if (!empty($form['handler']) && is_callable($form['handler'])) {
+			$handler = function ($values) use ($form) {
+				return call_user_func($form['handler'], $values);
+			};
+		}
+		$handler = $handler?:function (){};
 		$form = new FormManager_Package_Fm40_Form(
 			$this->element_factory->assign($form)->setValue($input),
 			$this->factory->View()
